@@ -6,8 +6,8 @@ class CreateGarbageTickets < ActiveRecord::Migration
       t.string :remark
       t.string :mobile
       t.string :email
-      t.double :latitude
-      t.double :longitude
+      t.decimal :latitude
+      t.decimal :longitude
       t.boolean :is_open
 
       t.timestamps
