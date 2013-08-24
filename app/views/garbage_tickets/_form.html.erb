@@ -16,34 +16,22 @@
     <%= f.text_field :location %>
   </div>
   <div class="field">
-    <%= f.label :level %><br />
-    <%= f.number_field :level %>
-  </div>
-  <div class="field">
     <%= f.label :remark %><br />
-    <%= f.text_field :remark %>
+    <%= f.text_area :remark %>
   </div>
   <div class="field">
     <%= f.label :mobile %><br />
-    <%= f.text_field :mobile %>
+    <%= f.telephone_field :mobile %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.text_field :email %>
+    <%= f.email_field :email %>
   </div>
-  <div class="field">
-    <%= f.label :latitude %><br />
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br />
-    <%= f.text_field :longitude %>
-  </div>
-  <div class="field">
-    <%= f.label :is_open %><br />
-    <%= f.check_box :is_open %>
-  </div>
+    <%= f.hidden_field :level %>
+    <%= f.hidden_field :latitude %>
+    <%= f.hidden_field :longitude %>
+    <%= f.hidden_field :is_open %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit" %>
   </div>
 <% end %>
