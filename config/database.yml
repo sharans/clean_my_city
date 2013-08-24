@@ -7,10 +7,8 @@ development:
   adapter: postgresql
   host: localhost
   database: clean_my_city_dev
-  pool: 5
-  timeout: 5000
   username: postgres
-  password:
+  password: pass
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
