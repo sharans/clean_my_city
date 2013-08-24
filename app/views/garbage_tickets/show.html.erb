@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Location:</b>
+  <%= @garbage_ticket.location %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%= @garbage_ticket.level %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%= @garbage_ticket.remark %>
+</p>
+
+<p>
+  <b>Mobile:</b>
+  <%= @garbage_ticket.mobile %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @garbage_ticket.email %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @garbage_ticket.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @garbage_ticket.longitude %>
+</p>
+
+<p>
+  <b>Is open:</b>
+  <%= @garbage_ticket.is_open %>
+</p>
+
+
+<%= link_to 'Edit', edit_garbage_ticket_path(@garbage_ticket) %> |
+<%= link_to 'Back', garbage_tickets_path %>

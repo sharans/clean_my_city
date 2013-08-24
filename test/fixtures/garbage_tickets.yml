@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  location: MyString
+  level: 1
+  remark: MyString
+  mobile: MyString
+  email: MyString
+  latitude: 
+  longitude: 
+  is_open: false
+
+two:
+  location: MyString
+  level: 1
+  remark: MyString
+  mobile: MyString
+  email: MyString
+  latitude: 
+  longitude: 
+  is_open: false

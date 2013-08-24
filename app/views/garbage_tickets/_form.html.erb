@@ -1,0 +1,49 @@
+<%= form_for(@garbage_ticket) do |f| %>
+  <% if @garbage_ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@garbage_ticket.errors.count, "error") %> prohibited this garbage_ticket from being saved:</h2>
+
+      <ul>
+      <% @garbage_ticket.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :level %><br />
+    <%= f.number_field :level %>
+  </div>
+  <div class="field">
+    <%= f.label :remark %><br />
+    <%= f.text_field :remark %>
+  </div>
+  <div class="field">
+    <%= f.label :mobile %><br />
+    <%= f.text_field :mobile %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :latitude %><br />
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude %><br />
+    <%= f.text_field :longitude %>
+  </div>
+  <div class="field">
+    <%= f.label :is_open %><br />
+    <%= f.check_box :is_open %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
