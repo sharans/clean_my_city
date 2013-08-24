@@ -1,46 +1,42 @@
 class GarbageTicketsController < ApplicationController
-  # GET /garbage_tickets
-  # GET /garbage_tickets.json
+  require 'net/http'
   def index
     @garbage_tickets = GarbageTicket.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @garbage_tickets }
     end
   end
 
-  # GET /garbage_tickets/1
-  # GET /garbage_tickets/1.json
   def show
     @garbage_ticket = GarbageTicket.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @garbage_ticket }
     end
   end
 
-  # GET /garbage_tickets/new
-  # GET /garbage_tickets/new.json
   def new
     @garbage_ticket = GarbageTicket.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @garbage_ticket }
     end
   end
 
-  # GET /garbage_tickets/1/edit
   def edit
     @garbage_ticket = GarbageTicket.find(params[:id])
   end
 
-  # POST /garbage_tickets
-  # POST /garbage_tickets.json
   def create
-    @garbage_ticket = GarbageTicket.new(params[:garbage_ticket])
+    geocode_url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=true&address=" + params[:garbage_ticket][:location]
+    response_json = JSON.parse(Net::HTTP.get_response(URI.parse geocode_url).body)
+    lat_lng = response_json["results"].first["geometry"]["location"]
+
+    @garbage_ticket = GarbageTicket.new(params[:garbage_ticket].merge(latitude: lat_lng["lat"], longitude: lat_lng["lng"]))
 
     respond_to do |format|
       if @garbage_ticket.save
@@ -53,8 +49,6 @@ class GarbageTicketsController < ApplicationController
     end
   end
 
-  # PUT /garbage_tickets/1
-  # PUT /garbage_tickets/1.json
   def update
     @garbage_ticket = GarbageTicket.find(params[:id])
 
@@ -69,8 +63,6 @@ class GarbageTicketsController < ApplicationController
     end
   end
 
-  # DELETE /garbage_tickets/1
-  # DELETE /garbage_tickets/1.json
   def destroy
     @garbage_ticket = GarbageTicket.find(params[:id])
     @garbage_ticket.destroy
