@@ -31,22 +31,18 @@ class GarbageTicketsController < ApplicationController
     @garbage_ticket = GarbageTicket.find(params[:id])
   end
 
+  def visualize
+    @lat_long_group = GarbageTicket.count(:all, group: [:latitude, :longitude])
+  end
+
   def create
     geocode_url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=true&address=" + params[:garbage_ticket][:location]
     response_json = JSON.parse(Net::HTTP.get_response(URI.parse geocode_url).body)
     lat_lng = response_json["results"].first["geometry"]["location"]
 
     @garbage_ticket = GarbageTicket.new(params[:garbage_ticket].merge(latitude: lat_lng["lat"], longitude: lat_lng["lng"]))
-
-    respond_to do |format|
-      if @garbage_ticket.save
-        format.html { redirect_to @garbage_ticket, notice: 'Garbage ticket was successfully created.' }
-        format.json { render json: @garbage_ticket, status: :created, location: @garbage_ticket }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @garbage_ticket.errors, status: :unprocessable_entity }
-      end
-    end
+    @garbage_ticket.save
+    redirect_to :visualize
   end
 
   def update
