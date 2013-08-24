@@ -1,4 +1,4 @@
-<%= form_for(@garbage_ticket) do |f| %>
+<%= form_for @garbage_ticket do |f| %>
   <% if @garbage_ticket.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@garbage_ticket.errors.count, "error") %> prohibited this garbage_ticket from being saved:</h2>
@@ -10,24 +10,27 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+    <div class="input-group">
+      <%= f.text_field :location, class: "form-control span6", placeholder: "Enter Location" %>
+    </div>
+  </div>
 
   <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
   </div>
+
   <div class="field">
-    <%= f.label :mobile %><br />
-    <%= f.telephone_field :mobile %>
+    <%= f.telephone_field :mobile, placeholder: "Mobile" %>
   </div>
+
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
+    <%= f.email_field :email, placeholder: "Email" %>
   </div>
-    <%= f.hidden_field :level %>
-    <%= f.hidden_field :latitude %>
-    <%= f.hidden_field :longitude %>
-    <%= f.hidden_field :is_open %>
+  <%= f.hidden_field :level %>
+  <%= f.hidden_field :latitude %>
+  <%= f.hidden_field :longitude %>
+  <%= f.hidden_field :is_open %>
   <div class="actions">
-    <%= f.submit "Submit" %>
+    <%= f.submit "Add", class: "btn btn-lg btn-success" %>
   </div>
 <% end %>

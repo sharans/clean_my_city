@@ -1,13 +1,5 @@
 class GarbageTicketsController < ApplicationController
   require 'net/http'
-  def index
-    @garbage_tickets = GarbageTicket.all
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @garbage_tickets }
-    end
-  end
 
   def show
     @garbage_ticket = GarbageTicket.find(params[:id])
@@ -27,10 +19,6 @@ class GarbageTicketsController < ApplicationController
     end
   end
 
-  def edit
-    @garbage_ticket = GarbageTicket.find(params[:id])
-  end
-
   def visualize
     @lat_long_group = GarbageTicket.count(:all, group: [:latitude, :longitude])
   end
@@ -43,20 +31,6 @@ class GarbageTicketsController < ApplicationController
     @garbage_ticket = GarbageTicket.new(params[:garbage_ticket].merge(latitude: lat_lng["lat"], longitude: lat_lng["lng"]))
     @garbage_ticket.save
     redirect_to :visualize
-  end
-
-  def update
-    @garbage_ticket = GarbageTicket.find(params[:id])
-
-    respond_to do |format|
-      if @garbage_ticket.update_attributes(params[:garbage_ticket])
-        format.html { redirect_to @garbage_ticket, notice: 'Garbage ticket was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @garbage_ticket.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def destroy
