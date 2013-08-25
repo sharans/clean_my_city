@@ -37,12 +37,9 @@ class GarbageTicketsController < ApplicationController
   end
 
   def destroy
-    @garbage_ticket = GarbageTicket.find(params[:id])
-    @garbage_ticket.destroy
-
-    respond_to do |format|
-      format.html { redirect_to garbage_tickets_url }
-      format.json { head :no_content }
-    end
+    location = {lat: params[:lat], lng: params[:lng]}
+    @garbage_ticket = GarbageTicket.where(latitude: location[:lat], longitude: location[:lng])
+    @garbage_ticket.destroy_all
+    redirect_to visualize_path(location: location)
   end
 end

@@ -14,11 +14,12 @@
     maxZoom: 18
     }).addTo(map);
 <% @lat_long_group.each do |key, val| %>
-  var circle = L.circle([<%=key[0] %>, <%=key[1]%> ], <%=val*500%>, {
+  var circle = L.circle([<%=key[0] %>, <%=key[1]%> ], <%=key[2]*100%>, {
           color: '<%="#{colour_map[key[2]]}"%>',
           fillColor: '#f03',
           fillOpacity: 0.5
           }).addTo(map);
+circle.bindPopup('Reported by <%= val%> ppl.<%=link_to 'Close Report', delete_ticket_path(lat: key[0], lng: key[1])%>');
     <% end %>
 </script>
   </body>
