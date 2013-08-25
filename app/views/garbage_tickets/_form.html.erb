@@ -34,7 +34,13 @@
   <div class="field">
     <%= f.email_field :email, placeholder: "Email" %>
   </div>
-  <%= f.text_field :level %>
+  <%= radio_button_tag(:level, 1) %>
+  <%= label_tag(:level, "Low") %>
+  <%= radio_button_tag(:level, 2) %>
+  <%= label_tag(:level, "Medium") %>
+  <%= radio_button_tag(:level, 3) %>
+  <%= label_tag(:level, "High") %>
+  <br/>
   <%= f.hidden_field :latitude %>
   <%= f.hidden_field :longitude %>
   <%= f.hidden_field :is_open %>
