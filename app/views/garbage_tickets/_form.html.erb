@@ -34,7 +34,7 @@
   <div class="field">
     <%= f.email_field :email, placeholder: "Email" %>
   </div>
-  <%= f.select :level, [1,2,3]%>
+  <%= f.select :level, [["Low Garbage",1],["Medium Garbage", 2],["High Garbage", 3]]%>
   <br/>
   <%= f.hidden_field :latitude %>
   <%= f.hidden_field :longitude %>
